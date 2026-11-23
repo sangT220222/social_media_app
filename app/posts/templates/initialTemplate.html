@@ -4,7 +4,7 @@
     <h1>Hello World!</h1>
     <p>Welcome to my first Django project!</p>
     <ul>
-      {%for post in allFeed%}
+      {%for post in allPosts%}
       <li>
         Post: {{post.body}}
         <ul>
@@ -14,5 +14,7 @@
       </li>
       {%endfor%}
     </ul>
+    <!-- tells django to look up url patter named created_post - browser sends a GET -->
+    <a href="{%url 'create_post'%}">Create post</a>
   </body>
 </html>
