@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Feed
-# Register your models here.
+from .models import Post, Comment, Like
 
-admin.site.register(Feed)
+admin.site.register(Post)
+admin.site.register(Like)
+admin.site.register(Comment)

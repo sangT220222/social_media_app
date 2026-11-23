@@ -4,9 +4,15 @@
     <h1>Hello World!</h1>
     <p>Welcome to my first Django project!</p>
     <ul>
-      {% for post in allFeed %}
-      <li>{{post.body}}</li>
-      {% endfor %}
+      {%for post in allFeed%}
+      <li>
+        Post: {{post.body}}
+        <ul>
+          <li>Likes: {{post.likes.count}}</li>
+          <li>Comment: {{post.comments.count}}</li>
+        </ul>
+      </li>
+      {%endfor%}
     </ul>
   </body>
 </html>
