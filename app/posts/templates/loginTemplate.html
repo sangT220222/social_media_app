@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit">Log in</button>
+    <!-- line bottom sends users back to feed (or the page that redirected us to this login page) -->
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</html>
