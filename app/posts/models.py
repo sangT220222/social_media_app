@@ -12,6 +12,13 @@ class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="likes")
     # related_name value is used to reference the linked object from other linked object
     # eg if related_name = likesTEST -> we can use post.likesTEST
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["author", "post"],
+                name="unique_author_like_post"
+            ),
+        ]
 
 
 class Comment(models.Model):
