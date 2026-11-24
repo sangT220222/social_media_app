@@ -10,11 +10,30 @@
         <form method="post" action="{% url 'like_post' post.id %}">
           {% csrf_token %}
           <button type="submit">Like</button>
-          <button type="" submit>Comment</button>
+        </form>
+        <form method="post" action="{% url 'comment_post' post.id %}">
+          {% csrf_token %} {% if post.pk == submitted_post_id %}
+          {{submitted_form.as_p }} {% else %} {{ comment_form.as_p }} {% endif%}
+          <button type="submit">Comment</button>
         </form>
         <ul>
           <li>Likes: {{post.likes.count}}</li>
-          <li>Comment: {{post.comments.count}}</li>
+          <ul>
+            {%for like in post.likes.all%}
+            <li>{{like.author}}</li>
+            {% empty %}
+            <li>No likes yet.</li>
+            {%endfor%}
+          </ul>
+          <li>Comments: {{post.comments.count}}</li>
+
+          <ul>
+            {%for comment in post.comments.all%}
+            <li>{{comment.body}}</li>
+            {% empty %}
+            <li>No comments yet.</li>
+            {%endfor%}
+          </ul>
         </ul>
       </li>
       {%endfor%}

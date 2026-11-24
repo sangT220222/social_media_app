@@ -1,15 +1,16 @@
 from django.shortcuts import HttpResponse, redirect, render, get_object_or_404
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from .models import Post, Like
-from .forms import PostForm
+from django.views.decorators.http import require_POST
+from .models import Post, Like, Comment
+from .forms import PostForm, CommentForm
 
 # @login_required
 @login_required(login_url="login")
 def feed(request):
     allPosts = Post.objects.order_by("-createdAt")
     template = loader.get_template('initialTemplate.html')
-    context = {'allPosts':allPosts}
+    context = {'allPosts':allPosts, "comment_form": CommentForm()}
     return HttpResponse(template.render(context,request))
 
 @login_required(login_url="login")
@@ -29,6 +30,8 @@ def create_post(request):
         form = PostForm()
     return render(request,"create_post.html", {"form":form})
 
+@login_required(login_url="login")
+@require_POST
 def like_post(request, post_id):
     post_object = get_object_or_404(Post, pk=post_id)
     # reuse an existing like on repeat. The unique constrainst on
@@ -36,3 +39,16 @@ def like_post(request, post_id):
     # to prevent same like being written from parallel requests, get_or_create() helps avoid a conflic
     Like.objects.get_or_create(author = request.user, post = post_object)
     return redirect("feed")
+
+@login_required(login_url="login")
+@require_POST
+def comment_post(request, post_id):
+    post_object = get_object_or_404(Post, pk=post_id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.author = request.user
+        comment.post = post_object
+        comment.save()
+        return redirect("feed")
+    return render(request,"initialTemplate.html", {"allPosts": Post.objects.order_by("-createdAt"),"comment_form": CommentForm(), "submitted_form": form,"submitted_post_id": post_id,})
