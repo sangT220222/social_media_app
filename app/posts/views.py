@@ -1,7 +1,7 @@
-from django.shortcuts import HttpResponse, redirect, render
+from django.shortcuts import HttpResponse, redirect, render, get_object_or_404
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from .models import Post
+from .models import Post, Like
 from .forms import PostForm
 
 # @login_required
@@ -28,3 +28,16 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request,"create_post.html", {"form":form})
+
+def like_post(request, post_id):
+    # checks if the primary key in Post object exists in the db
+    post_object = get_object_or_404(Post, pk=post_id)
+    # check if user has liked the post already
+    already_liked = Like.objects.filter(author=request.user, post=post_object).exists()
+    print(already_liked)
+    if(already_liked == False):
+        # post is a foreign key relating to Post object, hence we can assing it directly
+        createLike = Like(author = request.user, post = post_object)
+        createLike.save()
+    
+    return redirect("feed")

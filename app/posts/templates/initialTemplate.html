@@ -7,6 +7,11 @@
       {%for post in allPosts%}
       <li>
         Post: {{post.body}}
+        <form method="post" action="{% url 'like_post' post.id %}">
+          {% csrf_token %}
+          <button type="submit">Like</button>
+          <button type="" submit>Comment</button>
+        </form>
         <ul>
           <li>Likes: {{post.likes.count}}</li>
           <li>Comment: {{post.comments.count}}</li>
