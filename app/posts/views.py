@@ -30,14 +30,9 @@ def create_post(request):
     return render(request,"create_post.html", {"form":form})
 
 def like_post(request, post_id):
-    # checks if the primary key in Post object exists in the db
     post_object = get_object_or_404(Post, pk=post_id)
-    # check if user has liked the post already
-    already_liked = Like.objects.filter(author=request.user, post=post_object).exists()
-    print(already_liked)
-    if(already_liked == False):
-        # post is a foreign key relating to Post object, hence we can assing it directly
-        createLike = Like(author = request.user, post = post_object)
-        createLike.save()
-    
+    # reuse an existing like on repeat. The unique constrainst on
+    # (author,post) prevents duplicates if requests arrive together
+    # to prevent same like being written from parallel requests, get_or_create() helps avoid a conflic
+    Like.objects.get_or_create(author = request.user, post = post_object)
     return redirect("feed")
