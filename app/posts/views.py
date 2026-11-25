@@ -2,8 +2,9 @@ from django.shortcuts import HttpResponse, redirect, render, get_object_or_404
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from .models import Post, Like, Comment
+from .models import Post, Like
 from .forms import PostForm, CommentForm
+from django.contrib.auth.forms import UserCreationForm
 
 # @login_required
 @login_required(login_url="login")
@@ -52,3 +53,13 @@ def comment_post(request, post_id):
         comment.save()
         return redirect("feed")
     return render(request,"initialTemplate.html", {"allPosts": Post.objects.order_by("-createdAt"),"comment_form": CommentForm(), "submitted_form": form,"submitted_post_id": post_id,})
+
+def register_user(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("feed")
+    else:
+        form = UserCreationForm()
+    return render(request, "register_user.html", {"form":form})
