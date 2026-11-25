@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # User enters the body, view sets author, django sets createdAt on first save
-        fields=["body"]
+        fields=["body","image"]
 
 class CommentForm(forms.ModelForm):
     # specifies which model to use

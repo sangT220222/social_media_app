@@ -2,10 +2,14 @@
 <html>
   <body>
     <!-- Submit it to the create_post URL using POST -->
-    <form method="post" action="{% url 'create_post'%}">
+    <form
+      method="post"
+      action="{% url 'create_post'%}"
+      enctype="multipart/form-data"
+    >
+      <!-- enctype specified as form can take in binary files - img and audio -->
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Upload</button>
     </form>
-    <a href="{% url 'feed' %}">Back to feed</a>
   </body>
 </html>

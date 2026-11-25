@@ -17,7 +17,7 @@ def feed(request):
 def create_post(request):
     if request.method == 'POST':
         # request.POST contains the submitted form fields like body
-        form = PostForm(request.POST)
+        form = PostForm(request.POST,request.FILES) #request.FILEs for images
         if form.is_valid():
             # commit=False gives Post object in memeory with body filled in only, not author yet
             post = form.save(commit=False)
