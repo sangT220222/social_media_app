@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib.auth.views import LoginView
 from django.conf import settings
@@ -12,7 +12,8 @@ urlpatterns = [
     path("posts/new/", views.create_post, name='create_post'),
     path("like_post/<int:post_id>/", views.like_post, name="like_post"),
     path("comment_post/<int:post_id>", views.comment_post, name = "comment_post"),
-    path("register/", views.register_user, name="register_user"),
+    path("register/<str:invite_key>/", views.register_user, name="register_user"),
+    path("invitations/", include('invitations.urls', namespace='invitations')),
 ]
 
 # when request starts with /media/, take the rest of the path and look for it inside media folder

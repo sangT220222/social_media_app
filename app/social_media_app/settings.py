@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts',
+    'invitations',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,6 @@ LOGIN_REDIRECT_URL = 'feed'
 
 MEDIA_URL = '/media/' #what address the browser use
 MEDIA_ROOT = BASE_DIR / 'media' #where the file lives on disk
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+INVITATIONS_CONFIRMATION_URL_NAME = "register_user"

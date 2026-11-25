@@ -5,6 +5,10 @@ from django.views.decorators.http import require_POST
 from .models import Post, Like
 from .forms import PostForm, CommentForm
 from django.contrib.auth.forms import UserCreationForm
+from invitations.utils import get_invitation_model
+from django.http import Http404
+from django.db import transaction
+
 
 # @login_required
 @login_required(login_url="login")
@@ -54,11 +58,21 @@ def comment_post(request, post_id):
         return redirect("feed")
     return render(request,"initialTemplate.html", {"allPosts": Post.objects.order_by("-createdAt"),"comment_form": CommentForm(), "submitted_form": form,"submitted_post_id": post_id,})
 
-def register_user(request):
+def register_user(request, invite_key):
+    Invitation = get_invitation_model()
+    invitation = Invitation.objects.filter(key=invite_key, accepted=False, sent__isnull=False).first()
+    if invitation is None or invitation.key_expired():
+        raise Http404("Invitation is invalid, expired or has been used")
+    
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            with transaction.atomic():
+                updated = Invitation.objects.filter(pk=invitation.pk, accepted=False).update(accepted=True)
+                if updated == 0 :
+                    raise Http404("This invitation has already been used.")
+        
+                form.save()
             return redirect("feed")
     else:
         form = UserCreationForm()
