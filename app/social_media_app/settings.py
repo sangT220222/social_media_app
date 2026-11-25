@@ -126,5 +126,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # fallback for redirection if users go onto /login directly
 LOGIN_REDIRECT_URL = 'feed'
 
-MEDIA_URL = '/media/' #url to access media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #location to store media upload
+MEDIA_URL = '/media/' #what address the browser use
+MEDIA_ROOT = BASE_DIR / 'media' #where the file lives on disk

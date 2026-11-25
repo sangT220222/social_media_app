@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth.views import LoginView
+from django.conf import settings
+from django.conf.urls.static import static
 
 # route definition 
 urlpatterns = [
@@ -11,3 +13,6 @@ urlpatterns = [
     path("like_post/<int:post_id>/", views.like_post, name="like_post"),
     path("comment_post/<int:post_id>", views.comment_post, name = "comment_post"),
 ]
+
+# when request starts with /media/, take the rest of the path and look for it inside media folder
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
