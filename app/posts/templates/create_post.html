@@ -1,15 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'posts/feed.css' %}" />
+    <title>Create post</title>
+  </head>
   <body>
-    <!-- Submit it to the create_post URL using POST -->
-    <form
-      method="post"
-      action="{% url 'create_post'%}"
-      enctype="multipart/form-data"
-    >
-      <!-- enctype specified as form can take in binary files - img and audio -->
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Upload</button>
-    </form>
+    <main class="feed compose-page">
+      <section class="post-card">
+        <h1>Create post</h1>
+
+        <form
+          class="compose-form"
+          method="post"
+          action="{% url 'create_post' %}"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %} {{ form.as_p }}
+
+          <div class="compose-actions">
+            <a href="{% url 'feed' %}">Back to feed</a>
+            <button class="create-post-link publish-button" type="submit">
+              Publish
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
   </body>
 </html>

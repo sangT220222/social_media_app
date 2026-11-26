@@ -1,0 +1,152 @@
+.feed {
+  max-width: 640px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.feed-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.create-post-link {
+  display: inline-block;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background: #24a0ed;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.create-post-link:hover {
+  background: #07649f;
+}
+.create-post-link:active {
+  background-color: #055482;
+}
+.create-post-link:focus-visible {
+  outline: 2px solid #24a0ed;
+  outline-offset: 3px;
+}
+.post-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  list-style: none;
+}
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.post-media {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+}
+
+.comment-form {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.comment-form p {
+  flex: 1 1 12rem;
+  margin: 0;
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.comment-form input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.comment-section {
+  margin-top: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  background: #f3f5f7;
+  border-radius: 0.75rem;
+}
+
+.comment-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.625rem;
+  font-size: 0.875rem;
+}
+
+.comment-meta time {
+  color: #475569;
+  font-size: 0.75rem;
+}
+
+.comment-body {
+  margin: 0.25rem 0 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.compose-page {
+  margin-block: 2rem;
+}
+
+.compose-page h1 {
+  margin: 0 0 1rem;
+}
+
+.compose-form > p {
+  margin: 0 0 1rem;
+}
+
+.compose-form textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 0.5rem;
+  font: inherit;
+  resize: vertical;
+}
+
+.compose-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.compose-actions > a {
+  color: #475569;
+}
