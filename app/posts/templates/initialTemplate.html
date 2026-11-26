@@ -39,6 +39,18 @@
           {{submitted_form.as_p }} {% else %} {{ comment_form.as_p }} {% endif%}
           <button type="submit">Comment</button>
         </form>
+        {% for comment in post.comments.all %}
+          <div class="comment-section">
+            <div class="comment-meta">
+              <strong>{{ comment.author }}</strong>
+              <time datetime="{{ comment.createdAt|date:'c' }}">
+                {{ comment.createdAt|date:"j M, H:i" }}
+              </time>
+            </div>
+            <p class="comment-body">{{ comment.body }}</p>
+          </div>
+        {% endfor %}
+        </li>
       </li>
       {%endfor%}
     </ul>
