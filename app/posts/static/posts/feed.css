@@ -1,14 +1,44 @@
+.feed {
+  max-width: 640px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.feed-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.create-post-link {
+  display: inline-block;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background: #1d4ed8;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.create-post-link:hover {
+  background: #1e40af;
+}
+
+.create-post-link:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 3px;
+}
 .post-card {
   padding: 1rem;
   margin-bottom: 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.75rem;
+  list-style: none;
 }
-
-.feed {
-  max-width: 640px;
-  margin-inline: auto;
-  padding-inline: 1rem;
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 .post-media {
