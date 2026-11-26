@@ -1,0 +1,58 @@
+.post-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+}
+
+.feed {
+  max-width: 640px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.post-media {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+}
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+}
+
+.comment-form {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.comment-form p {
+  flex: 1 1 12rem;
+  margin: 0;
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.comment-form input {
+  width: 100%;
+  box-sizing: border-box;
+}
