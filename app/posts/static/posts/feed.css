@@ -14,18 +14,20 @@
   display: inline-block;
   padding: 0.625rem 1rem;
   border-radius: 0.5rem;
-  background: #1d4ed8;
+  background: #24a0ed;
   color: white;
   font-weight: 600;
   text-decoration: none;
 }
 
 .create-post-link:hover {
-  background: #1e40af;
+  background: #07649f;
 }
-
+.create-post-link:active {
+  background-color: #055482;
+}
 .create-post-link:focus-visible {
-  outline: 2px solid #1d4ed8;
+  outline: 2px solid #24a0ed;
   outline-offset: 3px;
 }
 .post-card {
@@ -110,4 +112,41 @@
   margin: 0.25rem 0 0;
   line-height: 1.5;
   overflow-wrap: anywhere;
+}
+
+.compose-page {
+  margin-block: 2rem;
+}
+
+.compose-page h1 {
+  margin: 0 0 1rem;
+}
+
+.compose-form > p {
+  margin: 0 0 1rem;
+}
+
+.compose-form textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 0.5rem;
+  font: inherit;
+  resize: vertical;
+}
+
+.compose-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.compose-actions > a {
+  color: #475569;
 }
